@@ -14,13 +14,12 @@ const getWeatherData = async (city) => {
 };
 let today = new Date();
 let time = today.getHours() + ":" + today.getMinutes();
-const textInput = document.getElementById("textInput");
-textInput.addEventListener("keydown", async (event) => {
-  if (event.key === "Enter") {
-    console.log(textInput.value);
-    try {
-      const res = await getWeatherData(textInput.value);
-      console.log(res);
+const search = document.getElementById("search");
+
+search.addEventListener("click", async (event) => {
+  try {
+    const value = document.getElementById("text").value;
+      const res = await getWeatherData(value);
       const d = document.getElementById("main1");
       d.innerHTML = `
         <div class="card">
@@ -37,5 +36,4 @@ textInput.addEventListener("keydown", async (event) => {
     } catch (error) {
       console.error(error);
     }
-  }
 });
